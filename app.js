@@ -27,8 +27,8 @@ app.get("/articles", async (req, res) => {
 });
 
 app.post("/articles", function(req, res){
-    console.log(req.query.title);
-    console.log(req.query.content);
+    console.log(req.body.title);
+    console.log(req.body.content);
 });
 
 
