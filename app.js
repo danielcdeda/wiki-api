@@ -18,15 +18,17 @@ const articleSchema = {
 
 const Article = mongoose.model("Article", articleSchema);
 
-app.get("/articles", async (req, res) => {
+
+app.route("/articles")
+
+.get(async (req, res) => {
     await Article.find().then(foundArticles => {
         res.send(foundArticles);
     }).catch(err => {
         console.log(err);
     })
-});
-
-app.post("/articles", function(req, res){
+})
+.post(function(req, res){
     
     const newArticle = new Article ({
         title: req.body.title,
@@ -36,23 +38,16 @@ app.post("/articles", function(req, res){
     newArticle.save().catch(err => {
         res.send(err)
     });
-});
-
-app.delete("/articles" , function(req ,res){
+})
+.delete(function(req ,res){
 
     Article.deleteMany({}).then(function (){
-  
           res.send("successfully deleted all articles");
-  
       }) .catch(err =>{
-  
         res.send(err);
-  
-      })});
-  
-  
+})});
 
-
+  
 
 app.listen(2048, function() {
     console.log("Server started on port 2048");
