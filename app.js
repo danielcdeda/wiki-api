@@ -27,10 +27,30 @@ app.get("/articles", async (req, res) => {
 });
 
 app.post("/articles", function(req, res){
-    console.log(req.body.title);
-    console.log(req.body.content);
+    
+    const newArticle = new Article ({
+        title: req.body.title,
+        content: req.body.content
+    });
+
+    newArticle.save().catch(err => {
+        res.send(err)
+    });
 });
 
+app.delete("/articles" , function(req ,res){
+
+    Article.deleteMany({}).then(function (){
+  
+          res.send("successfully deleted all articles");
+  
+      }) .catch(err =>{
+  
+        res.send(err);
+  
+      })});
+  
+  
 
 
 
