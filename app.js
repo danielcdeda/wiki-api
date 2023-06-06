@@ -28,6 +28,7 @@ app.route("/articles")
         console.log(err);
     })
 })
+
 .post(function(req, res){
     
     const newArticle = new Article ({
@@ -39,6 +40,7 @@ app.route("/articles")
         res.send(err)
     });
 })
+
 .delete(function(req ,res){
 
     Article.deleteMany({}).then(function (){
@@ -47,6 +49,13 @@ app.route("/articles")
         res.send(err);
 })});
 
+////// Requests targeting specific article //////
+
+app.route("articles/:articleTitle")
+
+.get(function(req,res){
+
+});
   
 
 app.listen(2048, function() {
